@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import React, { useState } from "react";
-// import PlayVerseLogo from '../assets/PlayVerseLogo.png'
+import Logo from '../public/images/playVerseLogo.png'
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
@@ -34,17 +34,17 @@ const Header = () => {
 
     return (
         <div className={style.wrapper}>
-            <Link href="/">
-                <div className={style.logoContainer}>
-                    {/* <Image src={mantleSeaLogo} height={80} width={200} alt="mantle logo" /> */}
-                    <div
-                        href="/"
-                        target={"_blank"}
-                        className="text-[32px] text-white font-serif"
-                    >
-                        PlayVerse
-                    </div>
-                    <div className={style.logoText}></div>
+            <Link
+                href="/"
+                target="_blank"
+                rel="noopener noreferrer"
+                passHref
+                className="text-secondary hover:text-white"
+            >
+                <div className="flex items-center cursor-pointer">
+                    <Image src={Logo} height={30} width={50} alt="logo" />
+
+                    <div className="ml-[0.8rem] text-white text-2xl font-serif">PlayVerse</div>
                 </div>
             </Link>
             {/* search bar to search streams */}
