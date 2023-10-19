@@ -1,5 +1,5 @@
 {
-	"name": "aptos-template",
+	"name": "sui-template",
 	"version": "0.1.0",
 	"private": true,
 	"author": "0xShikhar",
@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@livepeer/react": "^2.5.8",
+		"@suiet/wallet-kit": "^0.2.20",
 		"aptos": "^1.11.0",
 		"brackets-json-db": "^1.0.2",
 		"brackets-manager": "^1.5.8",

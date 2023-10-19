@@ -1,15 +1,16 @@
 import "../styles/globals.css";
 import MainLayout from "../layout/mainLayout";
-import {
-  LivepeerConfig,
-  ThemeConfig,
-  createReactClient,
-} from "@livepeer/react";
+import { WalletProvider } from '@suiet/wallet-kit';
+import '@suiet/wallet-kit/style.css';
+// import {
+//   LivepeerConfig,
+//   ThemeConfig,
+//   createReactClient,
+// } from "@livepeer/react";
 import React, { createContext, useMemo } from "react";
-import LivepeerClient from "../client";
-import { AptosClient } from "aptos";
-
-export const AptosContext = createContext(AptosClient);
+// import LivepeerClient from "../client";
+// import { AptosClient } from "aptos";
+// export const AptosContext = createContext(AptosClient);
 
 const theme = {
   colors: {
@@ -22,20 +23,20 @@ const theme = {
 };
 
 function MyApp({ Component, pageProps }) {
-  // create an aptos client using the devnet endpoint on app mount
-  const aptosClient = useMemo(
-    () => new AptosClient("https://fullnode.devnet.aptoslabs.com/v1"),
-    []
-  );
-
   return (
-    <AptosContext.Provider value={aptosClient}>
-      <LivepeerConfig client={LivepeerClient} theme={theme}>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
-      </LivepeerConfig>
-    </AptosContext.Provider>
+    // <AptosContext.Provider value={aptosClient}>
+    //   <LivepeerConfig client={LivepeerClient} theme={theme}>
+    //     <MainLayout>
+    //       <Component {...pageProps} />
+    //     </MainLayout>
+    //   </LivepeerConfig>
+    // </AptosContext.Provider>
+
+    <WalletProvider>
+      <Component {...pageProps} />
+    </WalletProvider>
+  
+
   );
 }
 

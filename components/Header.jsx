@@ -1,10 +1,8 @@
-// import Wallet from "../../components/wallet";
-
 import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
 import React, { useState } from "react";
-import logo from '../../public/images/playVerseLogo.png'
+// import PlayVerseLogo from '../assets/PlayVerseLogo.png'
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
@@ -23,34 +21,32 @@ const style = {
     logoText: ` ml-[0.8rem] text-white font-semibold text-2xl`,
     searchBar: `flex flex-1 mx-[0.8rem] w-max-[520px] items-center bg-[#363840] rounded-[0.8rem] hover:bg-[#4c505c]`,
     searchIcon: `text-[#8a939b] mx-3 font-bold text-lg`,
-    searchInput: `h-[2.6rem] font-Outfit font-light text-[12px] w-full border-0 bg-transparent outline-0 ring-0 px-2 pl-0 text-[#e6e8eb] placeholder:text-[#8a939b]`,
-    headerItems: ` font-Outfit font-light flex items-center align-right justify-end`,
-    headerItem: ` font-Outfit font-light text-white px-4 font-bold font-Outfit text-[#c8cacd] hover:text-white cursor-pointer`,
+    searchInput: `h-[2.6rem] w-full border-0 bg-transparent outline-0 ring-0 px-2 pl-0 text-[#e6e8eb] placeholder:text-[#8a939b]`,
+    headerItems: ` flex items-center align-right justify-end`,
+    headerItem: `text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer`,
     headerIcon: `text-[#8a939b] text-3xl font-black px-4 hover:text-white cursor-pointer`,
 };
 
-export default function Navbar() {
+const Header = () => {
     const router = useRouter();
     const wallet = useWallet();
-
-    const [searchQuery, setSearchQuery] = useState("Enter Your Streaming ID");
+    const [searchQuery, setSearchQuery] = useState("");
 
     return (
         <div className={style.wrapper}>
             <Link href="/">
                 <div className={style.logoContainer}>
-                    <Image src={logo} height={50} width={60} alt="mantle logo" />
+                    {/* <Image src={mantleSeaLogo} height={80} width={200} alt="mantle logo" /> */}
                     <div
                         href="/"
                         target={"_blank"}
-                        className="text-[32px] px-2 text-white font-serif"
+                        className="text-[32px] text-white font-serif"
                     >
                         PlayVerse
                     </div>
                     <div className={style.logoText}></div>
                 </div>
             </Link>
-
             {/* search bar to search streams */}
             <div className={style.searchBar}>
                 <div className={style.searchIcon}>
@@ -60,6 +56,7 @@ export default function Navbar() {
                     className={style.searchInput}
                     type="text"
                     value={searchQuery}
+                    placeholder="Enter Your Streaming ID"
                 //  onKeyPress={(e) => {
                 // if (e.key === 'Enter')
                 //     console.log(searchQuery)
@@ -69,7 +66,7 @@ export default function Navbar() {
                     onClick={() => {
                         router.push(`/streaming/${searchQuery}`);
                     }}
-                    className="px-2 text-[#98ee2c] font-Outfit text-[14px] font-bold"
+                    className="text-white px-2"
                 >
                     Search
                 </button>
@@ -82,58 +79,47 @@ export default function Navbar() {
                 <div
                     className={style.headerItem}
                     onClick={() => {
-                        router.push("/event");
-                    }}
-                >
-                    Create Event
-                </div>
-                <div
-                    className={style.headerItem}
-                    onClick={() => {
-                        router.push("/explore");
-                    }}
-                >
-                    Explore
-                </div>
-                <div className={style.headerItem} onClick={() => { router.push('/CreateAndViewAsset') }}> Video NFT</div>
-                <div
-                    className={style.headerItem}
-                    onClick={() => {
                         router.push("/tournament");
                     }}
                 >
-                    Tournaments
+                    Tournament
                 </div>
-
-                {/* <div className={style.headerIcon} onClick={() => { router.push(`/profile/${address}`) }}> */}
+                <div
+                    className={style.headerItem}
+                    onClick={() => {
+                        router.push("/nft");
+                    }}
+                >
+                    Mint NFT
+                </div>
                 <div
                     className={style.headerIcon}
                     onClick={() => {
-                        router.push("/nft");
+                        router.push(`/profile/${address}`);
                     }}
                 >
                     <CgProfile />
                 </div>
                 <div className={style.headerIcon}>
-
+                    <MdOutlineAccountBalanceWallet />
                 </div>
-                <div className="flex relative text-lg font-semibold px-10 py-3 bg-[#98ee2c] mr-5 text-black hover:bg-[#f0f0f0] cursor-pointer ">
-                    {/* <Wallet /> */}
-                    <div class="flex ">
-                        <ConnectButton className="bg-gradient-to-l from-purple-400 to-green-400">
-                            Connect Wallet
-                        </ConnectButton>
-
-                    </div>
+                <div>
+                    <ConnectButton className="bg-gradient-to-l from-purple-400 to-green-400">
+                        Connect Wallet
+                    </ConnectButton>
                 </div>
             </div>
-            {wallet && wallet.connected && !correctedChain && (
+
+            {wallet && wallet.connected && (
                 <div class="container ml-auto mr-auto max-w-4xl p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-black dark:text-yellow-300" role="alert">
 
                     <strong class="font-bold">Incorrect chain!</strong>{` `}
                     <span class="block sm:inline ml-1">Support Testnet only</span>
                 </div>
             )}
+
         </div>
     );
-}
+};
+
+export default Header;
