@@ -1,9 +1,9 @@
-import Navbar from "../components/navigation/navbar";
+import Navbar from "../components/Header";
 
 export default function MainLayout({ children }) {
 	return (
 		<div>
-            <Navbar />
+            <Header />
             {children}
 		</div>
 	);
