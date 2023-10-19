@@ -35,7 +35,7 @@ const Hero = () => {
                         </div>
 
                         <div className={style.title}>
-                            Stream & Organize Games on the Aptos Blockchain
+                            Stream & Organize Games on the Sui Blockchain
                         </div>
 
                         <div className={style.ctaContainer}>
@@ -46,6 +46,7 @@ const Hero = () => {
                                 <button className={style.button}>Create Stream <BsArrowRight className='mt-1 ml-2' /></button>
                             </Link>
                         </div>
+                        
                     </div>
                     <div className={style.cardContainer}>
                         {/* <img
