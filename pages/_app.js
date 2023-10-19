@@ -33,9 +33,11 @@ function MyApp({ Component, pageProps }) {
     // </AptosContext.Provider>
 
     <WalletProvider>
-      <Component {...pageProps} />
+      <MainLayout>
+        <Component {...pageProps} />
+      </MainLayout>
     </WalletProvider>
-  
+
 
   );
 }

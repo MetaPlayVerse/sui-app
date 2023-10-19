@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from '../public/images/playVerseLogo.png'
 import { AiOutlineSearch } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import toast, { Toaster } from 'react-hot-toast';
+
 import {
     ConnectButton,
     useAccountBalance,
@@ -27,10 +29,22 @@ const style = {
     headerIcon: `text-[#8a939b] text-3xl font-black px-4 hover:text-white cursor-pointer`,
 };
 
+const notify = () => toast.error('Incorrect chain! - Support Sui Testnet only');
+
 const Header = () => {
     const router = useRouter();
     const wallet = useWallet();
     const [searchQuery, setSearchQuery] = useState("");
+
+    console.log("wallet", wallet)
+
+    useEffect(() => {
+        if (wallet && wallet.connected) {
+            if (wallet.chainId !== SuiChainId) {
+                notify();
+            }
+        }
+    }), [wallet];
 
     return (
         <div className={style.wrapper}>
@@ -111,10 +125,8 @@ const Header = () => {
             </div>
 
             {wallet && wallet.connected && (
-                <div class="container ml-auto mr-auto max-w-4xl p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-black dark:text-yellow-300" role="alert">
-
-                    <strong class="font-bold">Incorrect chain!</strong>{` `}
-                    <span class="block sm:inline ml-1">Support Testnet only</span>
+                <div >
+                    <Toaster />
                 </div>
             )}
 
