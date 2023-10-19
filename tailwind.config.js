@@ -2,7 +2,14 @@
 module.exports = {
   content: ["./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        Montserrat: ['Montserrat', 'sans-serif'],
+        Raleway: ['Raleway', 'sans-serif'],
+        Agda: ['Agdasima', 'sans-serif'],
+        Outfit: ['Outfit', 'sans-serif'],
+      }, //end of fontFamily
+    },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
