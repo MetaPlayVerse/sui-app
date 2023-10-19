@@ -1,0 +1,18 @@
+[package]
+name = 'create_nft'
+version = '1.0.0'
+
+[addresses]
+mint_nft ="4c457ac1524668c0142f057012033e3df3138e4427578614612a65810dbb4cd1"
+std="0x1"
+aptos_framework="0x1"
+aptos_std="0x1"
+aptos_token="0x3"
+
+
+[dependencies]
+AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", subdir="aptos-move/framework/aptos-framework/", rev="aptos-cli-v0.3.4" }
+AptosStdlib = { git = "https://github.com/aptos-labs/aptos-core.git", subdir="aptos-move/framework/aptos-stdlib/", rev="aptos-cli-v0.3.4" }
+AptosToken = { git = "https://github.com/aptos-labs/aptos-core.git", subdir="aptos-move/framework/aptos-token/", rev="aptos-cli-v0.3.4" }
+
+
