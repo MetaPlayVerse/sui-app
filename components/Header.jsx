@@ -40,6 +40,7 @@ const Header = () => {
 
     useEffect(() => {
         if (wallet && wallet.connected) {
+            toast.success('Wallet connected successfully');
             if (wallet.chainId !== SuiChainId) {
                 notify();
             }
@@ -118,7 +119,7 @@ const Header = () => {
                     <MdOutlineAccountBalanceWallet />
                 </div>
                 <div>
-                    <ConnectButton className="bg-gradient-to-l from-purple-400 to-green-400">
+                    <ConnectButton className="bg-[#98ee2c]">
                         Connect Wallet
                     </ConnectButton>
                 </div>
