@@ -1,6 +1,8 @@
+"use client"
+
 import React, { useState, useEffect, useRef } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const NFTform = () => {
     const router = useRouter();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BiHeart } from 'react-icons/bi'
-import Router from 'next/router'
+import Router from 'next/navigation'
 import { IpfsImage } from 'react-ipfs-image'
 import Image from 'next/image'
 
