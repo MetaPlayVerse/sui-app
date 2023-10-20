@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { BsFillArrowRightCircleFill, BsArrowRight } from "react-icons/bs";
-import Link from "next/link"; 
+import Link from "next/link";
 
 const Tournament = () => {
   const [tournamentName, setTournamentName] = useState("");
@@ -25,7 +25,6 @@ const Tournament = () => {
   //           tournamentId,
   //         }),
   //       });
-
   //       if (response.ok) {
   //         console.log("tournament deleted successfully!");
   //         router.push("/thankyou");

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { BiHeart } from 'react-icons/bi'
 import Router from 'next/router'
 import { IpfsImage } from 'react-ipfs-image'
+import Image from 'next/image'
 
 const style = {
     wrapper: `bg-[#303339] flex-auto w-[14rem] h-[24rem] my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer`,
@@ -57,7 +58,7 @@ const EventCard = ({ eventItem, title, listings }) => {
                         <div className={style.infoRight}>
                             <div className={style.priceTag}>Price</div>
                             <div className={style.priceValue}>
-                                <img
+                                <Image
                                     src="https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg"
                                     alt="eth"
                                     className={style.ethLogo}
