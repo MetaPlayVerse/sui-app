@@ -2,13 +2,13 @@ import "../styles/globals.css";
 import MainLayout from "../layout/mainLayout";
 import { WalletProvider } from '@suiet/wallet-kit';
 import '@suiet/wallet-kit/style.css';
-// import {
-//   LivepeerConfig,
-//   ThemeConfig,
-//   createReactClient,
-// } from "@livepeer/react";
+import {
+  LivepeerConfig,
+  ThemeConfig,
+  createReactClient,
+} from "@livepeer/react";
 import React, { createContext, useMemo } from "react";
-// import LivepeerClient from "../client";
+import LivepeerClient from "../client";
 // import { AptosClient } from "aptos";
 // export const AptosContext = createContext(AptosClient);
 
@@ -32,11 +32,14 @@ function MyApp({ Component, pageProps }) {
     //   </LivepeerConfig>
     // </AptosContext.Provider>
 
-    <WalletProvider>
-      <MainLayout>
-        <Component {...pageProps} />
-      </MainLayout>
-    </WalletProvider>
+    <LivepeerConfig client={LivepeerClient} theme={theme}>
+      <WalletProvider>
+        <MainLayout>
+          <Component {...pageProps} />
+        </MainLayout>
+      </WalletProvider>
+    </LivepeerConfig>
+
 
 
   );

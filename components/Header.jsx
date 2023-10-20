@@ -41,7 +41,7 @@ const Header = () => {
     useEffect(() => {
         if (wallet && wallet.connected) {
             toast.success('Wallet connected successfully');
-            if (wallet.chainId !== SuiChainId) {
+            if (wallet.chain.id !== "sui:testnet") {
                 notify();
             }
         }
