@@ -41,7 +41,7 @@ const explore = () => {
                             </figure>
                             <div className="card-body">
                                 <div className="flex">
-                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Sept 02</div>
+                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Nov 02</div>
                                     <div className="font-Agda text-[18px] uppercase px-2"> Starting At 6:00PM</div>
                                     <div className="text-end justify-end">
                                         <BiHeart />
@@ -68,7 +68,7 @@ const explore = () => {
                             </figure>
                             <div className="card-body">
                                 <div className="flex">
-                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Aug 20</div>
+                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Oct 20</div>
                                     <div className="font-Agda text-[18px] uppercase px-2"> Starting At 6:00PM</div>
                                     <div className="text-end justify-end">
                                         <BiHeart />
@@ -96,7 +96,7 @@ const explore = () => {
                             </figure>
                             <div className="card-body">
                                 <div className="flex">
-                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Sept 04</div>
+                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Nov 04</div>
                                     <div className="font-Agda text-[18px] uppercase px-2"> Starting At 6:00PM</div>
                                     <div className="text-end justify-end">
                                         <BiHeart />
@@ -127,7 +127,7 @@ const explore = () => {
                             </figure>
                             <div className="card-body">
                                 <div className="flex">
-                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Sept 02</div>
+                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Nov 02</div>
                                     <div className="font-Agda text-[18px] uppercase px-2"> Starting At 6:00PM</div>
                                     <div className="text-end justify-end">
                                         <BiHeart />
@@ -154,7 +154,7 @@ const explore = () => {
                             </figure>
                             <div className="card-body">
                                 <div className="flex">
-                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Aug 20</div>
+                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Oct 20</div>
                                     <div className="font-Agda text-[18px] uppercase px-2"> Starting At 6:00PM</div>
                                     <div className="text-end justify-end">
                                         <BiHeart />
@@ -183,7 +183,7 @@ const explore = () => {
                             </figure>
                             <div className="card-body">
                                 <div className="flex">
-                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Sept 04</div>
+                                    <div className="font-Agda text-[18px] uppercase text-[#98ee2c]"> Nov 04</div>
                                     <div className="font-Agda text-[18px] uppercase px-2"> Starting At 6:00PM</div>
                                     <div className="text-end justify-end">
                                         <BiHeart />
