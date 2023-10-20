@@ -33,8 +33,8 @@ const explore = () => {
                         <div className="card card-compact mx-5 w-[400px] bg-[#202020] p-4 text-white shadow-xl">
                             <figure>
                                 <img
-                                    src="/images/AptosTrends.png"
-                                    alt="Gaming Trends on Aptos"
+                                    src="/images/sui.png"
+                                    alt="Gaming Trends on Sui"
                                     cover
                                 />
                             </figure>
@@ -46,7 +46,7 @@ const explore = () => {
                                         <BiHeart />
                                     </div>
                                 </div>
-                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Gaming Trends on Aptos</h2>
+                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Gaming Trends on Sui</h2>
                                 <div className="flex ">
                                     <button
                                         className="flex justify-start relative text-lg px-8 py-3 bg-[#98ee2c]  mr-5 uppercase font-Agda font-bold text-black hover:bg-[#f0f0f0] cursor-pointer" >
@@ -128,8 +128,8 @@ const explore = () => {
                         <div className="card card-compact mx-5 w-[400px] bg-[#202020] p-4 text-white shadow-xl">
                             <figure>
                                 <img
-                                    src="/images/AptosTrends.png"
-                                    alt="Gaming Trends on Aptos"
+                                    src="/images/sui.png"
+                                    alt="Gaming Trends on sui"
                                     cover
                                 />
                             </figure>
@@ -141,7 +141,7 @@ const explore = () => {
                                         <BiHeart />
                                     </div>
                                 </div>
-                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Gaming Trends on Aptos</h2>
+                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Gaming Trends on Sui</h2>
                                 <div className="flex ">
                                     <button
                                         className="flex justify-start relative text-lg px-8 py-3 bg-[#98ee2c]  mr-5 uppercase font-Agda font-bold text-black hover:bg-[#f0f0f0] cursor-pointer" >

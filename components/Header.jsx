@@ -118,8 +118,8 @@ const Header = () => {
                 <div className={style.headerIcon}>
                     <MdOutlineAccountBalanceWallet />
                 </div>
-                <div>
-                    <ConnectButton className="bg-[#98ee2c]">
+                <div className="text-black z-40">
+                    <ConnectButton className="bg-gradient-to-l from-[#98ee2c] to-green-400 ">
                         Connect Wallet
                     </ConnectButton>
                 </div>
