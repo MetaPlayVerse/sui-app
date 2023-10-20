@@ -21,19 +21,21 @@ export default function GlobalContexts({
 }) {
     return (
         <LivepeerConfig client={LivepeerClient}>
-            <WalletKitProvider>
-                <Toaster position="top-center" toastOptions={{
-                    style: {
-                        border: '1px solid #713200',
-                        color: '#713200',
-                    },
-                }} />
-                <Navbar />
-                <main className="min-h-screen">
-                    {children}
-                </main>
-                <Footer />
-            </WalletKitProvider>
+            <WalletProvider>
+                <WalletKitProvider>
+                    <Toaster position="top-center" toastOptions={{
+                        style: {
+                            border: '1px solid #713200',
+                            color: '#713200',
+                        },
+                    }} />
+                    <Navbar />
+                    <main className="min-h-screen">
+                        {children}
+                    </main>
+                    <Footer />
+                </WalletKitProvider>
+            </WalletProvider>
         </LivepeerConfig>
     );
 }

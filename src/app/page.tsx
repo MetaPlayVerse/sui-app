@@ -1,13 +1,6 @@
 "use client";
 
-import { generateNonce, generateRandomness } from '@mysten/zklogin';
-import { useSui } from "@/app/hooks/useSui";
-import { useLayoutEffect, useState } from "react";
-import { UserKeyData } from "@/app/types/UsefulTypes";
-import { Ed25519Keypair } from '@mysten/sui.js/keypairs/ed25519';
-import { Keypair, PublicKey } from "@mysten/sui.js/cryptography";
 import Hero from "@/app/components/Hero";
-
 
 export default function Home() {
 
