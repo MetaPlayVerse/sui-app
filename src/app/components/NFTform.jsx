@@ -18,20 +18,20 @@ const NFTform = () => {
     }
 
     const nameHandler = (event) => {
-        setNftName(event.target.value);
+        setNftName(event.target.defaultdefaultValue);
     }
 
     const descriptionHandler = (event) => {
-        setNftDescription(event.target.value);
+        setNftDescription(event.target.defaultValue);
     }
 
     const imageHandler = (event) => {
         // do ipfs upload here and set the image url to nftImage
-        setNftImage(event.target.value);
+        setNftImage(event.target.defaultValue);
     }
 
     const priceHandler = (event) => {
-        setNftPrice(event.target.value);
+        setNftPrice(event.target.defaultValue);
     }
 
 
@@ -40,14 +40,15 @@ const NFTform = () => {
             {/* create nft form  */}
             <div className="flex flex-col items-center justify-center">
                 <div className="w-full pt-5 max-w-lg">
+
                     <form >
                         <div className=" flex flex-col text-left mb-6">
                             <label htmlFor="text" className=" mb-2 text-lg font-medium text-white dark:text-white">Enter NFT Name</label>
-                            <input type="text" id="input-name" value={nftName} onChange={nameHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Bored Ape Yacht Club" required />
+                            <input type="text" id="input-name" defaultValue={nftName} onChange={nameHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Bored Ape Yacht Club" required />
                         </div>
                         <div className=" flex flex-col text-left mb-6">
                             <label htmlFor="text" className=" mb-2 text-lg font-medium text-white dark:text-white">Enter NFT Description</label>
-                            <input type="text" id="input-name" value={nftDescription} onChange={descriptionHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Write about your collection details here" required />
+                            <input type="text" id="input-name" defaultValue={nftDescription} onChange={descriptionHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Write about your collection details here" required />
                         </div>
 
                         <div className=" flex flex-col text-left mb-6">
@@ -57,7 +58,7 @@ const NFTform = () => {
 
                         <div className=" flex flex-col text-left mb-6">
                             <label htmlFor="text" className=" mb-2 text-lg font-medium text-white dark:text-white">Enter NFT Price</label>
-                            <input type="number" id="input-name" value={nftPrice} onChange={priceHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0.1 SUI" required />
+                            <input type="number" id="input-name" defaultValue={nftPrice} onChange={priceHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="0.1 SUI" required />
                         </div>
 
                         <button onClick={onFormSubmit}
@@ -77,7 +78,7 @@ const NFTform = () => {
                         </div> */}
                         {/* <div className="flex items-start mb-6">
                                     <div className="flex items-center h-5">
-                                        <input id="terms" type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
+                                        <input id="terms" type="checkbox" defaultValue="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                                     </div>
                                     <label htmlFor="terms" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Verifying <a className="text-blue-600 hover:underline dark:text-blue-500">Transaction</a></label>
                                 </div> */}

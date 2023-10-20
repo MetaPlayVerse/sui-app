@@ -1,8 +1,9 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Player } from "@livepeer/react";
-import logo from "../public/images/Cyberpet.png";
+import logo from "../../../public/images/Cyberpet.png";
 import { useRouter } from "next/navigation";
 
 export default function Streams() {
@@ -23,7 +24,7 @@ export default function Streams() {
 
   return (
     <main className="min-h-[100vh] flex-1 flex flex-col justify-start items-center">
-      <h1 className="my-10 leading-5 text-5xl ">All Live Events</h1>
+      <h1 className="my-10 leading-5 text-5xl text-white font-bold">All Live Events</h1>
 
       <ul className="grid grid-cols-3 gap-4">
         {streams.map((stream) => (

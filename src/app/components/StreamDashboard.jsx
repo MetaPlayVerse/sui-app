@@ -1,15 +1,17 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import StreamPlayer from "./StreamPlayer";
 
-const StreamDashboard = () => {
+const StreamDashboard = (params) => {
   const [streamKey, setStreamKey] = useState("");
   const [getStreamInfo, setGetStreamInfo] = useState("");
   const router = useRouter();
 
   async function fetchData() {
     try {
-      const res = await fetch(`/api/stream/${router.query.id}`);
+      const res = await fetch(`/api/stream/${params.id}`);
       const data = await res.json();
       console.log(data);
       setGetStreamInfo(data);
@@ -18,7 +20,7 @@ const StreamDashboard = () => {
     }
   }
   useEffect(() => {
-    console.log(router.query.id);
+    console.log("query", params.id);
     fetchData();
   }, []);
   return (

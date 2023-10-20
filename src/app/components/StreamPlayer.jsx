@@ -1,11 +1,11 @@
-import { Player } from '@livepeer/react';
+"use client";
 
+import { Player } from '@livepeer/react';
 import Image from 'next/image';
 
-const playbackId =
-    '170b18cvf35ga3t9';
+const playbackId ='170b18cvf35ga3t9';
 
-import blenderPoster from '../public/images/godOfWar.jpg';
+import blenderPoster from '../../../public/images/godOfWar.jpg';
 
 const PosterImage = () => {
     return (
@@ -15,6 +15,7 @@ const PosterImage = () => {
             objectFit="cover"
             priority
             placeholder="blur"
+            alt="God of War poster"
         />
     );
 };

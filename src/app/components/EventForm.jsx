@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect, useRef } from "react";
 import { BsArrowRight } from "react-icons/bs";
 import DatePicker from "react-datepicker";
@@ -61,27 +63,27 @@ const EventForm = () => {
     };
 
     const nameHandler = (event) => {
-        setEventName(event.target.value);
+        setEventName(event.target.defaultValue);
     };
 
     const descriptionHandler = (event) => {
-        setEventDescription(event.target.value);
+        setEventDescription(event.target.defaultValue);
     };
 
     const imageHandler = (event) => {
         // do ipfs upload here and set the image url to eventImage
-        setEventImage(event.target.value);
+        setEventImage(event.target.defaultValue);
     };
 
     const timeHandler = (event) => {
-        setEventTime(event.target.value);
+        setEventTime(event.target.defaultValue);
     };
 
     return (
         <div>
             {/* create event form  */}
             <div className="w-full pt-5 max-w-lg">
-                <form >
+                <form onSubmit={Submit}>
                     <div className="flex justify-end flex-col text-left mb-6">
                         <label
                             htmlFor="text"
@@ -93,7 +95,7 @@ const EventForm = () => {
                         <input
                             type="text"
                             id="input-name"
-                            value={eventName}
+                            defaultValue={eventName}
                             onChange={nameHandler}
                             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                             placeholder="MegaRun 2 Live Stream"
@@ -111,7 +113,7 @@ const EventForm = () => {
                         <input
                             type="text"
                             id="input-name"
-                            value={eventDescription}
+                            defaultValue={eventDescription}
                             onChange={descriptionHandler}
                             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                             placeholder="Write about your event details here"
@@ -129,7 +131,6 @@ const EventForm = () => {
                         <input
                             type="file"
                             id="input-name"
-                
                             onChange={imageHandler}
                             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                             required
@@ -149,6 +150,7 @@ const EventForm = () => {
                                 placeholderText="2023-07-01 10:00"
                                 selected={eventTime}
                                 onChange={(date) => setEventTime(date)}
+                                defaultdefaultValue={eventTime}
                                 showTimeSelect
                                 timeFormat="HH:mm"
                                 dateFormat="yyyy-MM-dd HH:mm"
@@ -158,6 +160,7 @@ const EventForm = () => {
 
                     <button
                         onClick={Submit}
+                        onChange={timeHandler}
                         className="flex justify-start relative text-lg px-8 py-3 bg-[#98ee2c]  mr-5 uppercase font-Agda font-bold text-black hover:bg-[#f0f0f0] cursor-pointer" >
                         List Your Event
                         <BsArrowRight className=' ml-2' />

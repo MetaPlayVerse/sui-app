@@ -1,5 +1,6 @@
+"use client";
 
-import { useRouter } from "next/router";
+import { useRouter, usePathname, useSearchParams  } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Tournament from "../components/Tournament";
 import BracketView from "../components/BracketView";
@@ -11,7 +12,8 @@ const Viewer = () => {
     const [opp2Data, setOpp2Data] = useState(0);
 
     const router = useRouter();
-    const { tname } = router.query;
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
 
     useEffect(() => {
         const storedGameId = localStorage.getItem("gameId");

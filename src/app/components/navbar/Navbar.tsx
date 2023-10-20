@@ -120,7 +120,7 @@ export default function Navbar() {
         <div className="flex items-center cursor-pointer">
           <Image src={Logo} height={30} width={50} alt="logo" />
 
-          <div className="ml-[0.8rem] text-white text-2xl font-serif">SUI PlayVerse</div>
+          <div className="ml-[0.8rem] text-white text-2xl font-serif"> PlayVerse</div>
         </div>
       </Link>
       {/* search bar to search streams */}
