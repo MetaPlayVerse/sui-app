@@ -1,17 +1,16 @@
 // Tournament Contract
-
-import 0x1::Event;
-import 0x1::Vector;
-import 0x1::CryptoHash;
-
 module Tournament {
-    use 0x1::Account;
-    use 0x1::Event;
-    use 0x1::Vector;
-    use 0x1::CryptoHash;
 
-    // Event emitted when the winning team is announced
-    event WinnerAnnounced(addr: address, prize: u64);
+    use sui::table::{Self, Table};
+    use sui::tx_context::{Self, TxContext};
+    use sui::coin::{Self, Coin};
+    use sui::balance::{ Self, Supply, Balance };
+    use sui::object::{Self, UID, ID };
+    use sui::transfer; 
+    use sui::event;
+    use sui::sui::SUI;
+    use sui::vector;
+    use sui::account::{Self, Account};
 
     // Struct representing a team
     struct Team {
@@ -22,19 +21,19 @@ module Tournament {
     // Struct representing the Tournament
     struct Tournament {
         organizer: address,
-        teams: Vector<Team>,
+        teams: vector<Team>,
         prize: u64,
         winnerAnnounced: bool,
     }
 
-    // Storage for the Tournament contract
-    resource TournamentStorage {
-        tournament: Tournament
-    }
+    // // Storage for the Tournament contract
+    // resource TournamentStorage {
+    //     tournament: Tournament
+    // }
 
     // Initialize the Tournament contract
     public fun initialize(organizer: address, prize: u64): TournamentStorage {
-        let teams: Vector<Team> = Vector::empty();
+        let teams: vector<Team> = vector::empty();
         let tournament: Tournament = Tournament {
             organizer: organizer,
             teams: teams,
@@ -45,13 +44,13 @@ module Tournament {
     }
 
     // Function to add a team to the tournament
-    public fun addTeam(address: address): u64 {
+    public fun addTeam(teamParticipant: address): u64 {
         let mut storage = &mut TournamentStorage::borrow_global();
-        assert(!storage.tournament.winnerAnnounced, 1);
+        assert(!storage.tournament.winnerAnnounced, 0);
 
-        let teamId = Vector::length(&storage.tournament.teams) as u64;
-        let team = Team { teamId: teamId, participant: address };
-        Vector::push_back(&mut storage.tournament.teams, team);
+        let teamId = vector::length(&storage.tournament.teams) as u64;
+        let team = Team { teamId: teamId, participant: teamParticipant };
+        vector::push_back(&mut storage.tournament.teams, team);
 
         teamId
     }
@@ -59,17 +58,18 @@ module Tournament {
     // Function to announce the winner and distribute the prize
     public fun announceWinner(winningTeamId: u64) {
         let mut storage = &mut TournamentStorage::borrow_global();
-        assert(!storage.tournament.winnerAnnounced, 2);
-        assert(winningTeamId < Vector::length(&storage.tournament.teams) as u64, 3);
+        assert(!storage.tournament.winnerAnnounced, 1);
+        assert(winningTeamId < vector::length(&storage.tournament.teams) as u64, 2);
 
-        let winningTeam = Vector::borrow(&storage.tournament.teams, winningTeamId as usize);
-        assert(winningTeam.participant == Account::get_signer(), 4);
+        let winningTeam = vector::borrow(&storage.tournament.teams, winningTeamId as usize);
+        assert(winningTeam.participant == Account::get_signer(), 3);
 
         // Transfer the prize to the winning team
         Account::pay_from_sender(winningTeam.participant, storage.tournament.prize);
 
         // Emit WinnerAnnounced event
-        Event::emit<WinnerAnnounced>((winningTeam.participant, storage.tournament.prize));
+        event::emit<WinnerAnnounced>(winningTeam.participant, storage.tournament.prize);
+         // Event emitted when the winning team is announced
 
         storage.tournament.winnerAnnounced = true;
     }

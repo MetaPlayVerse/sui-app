@@ -1,12 +1,16 @@
 module mint_nft::create_nft {
-    use std::bcs;
-    use std::error;
-    use std::signer;
-    use std::string::{Self, String};
-    use std::vector;
 
-    use aptos_token::token;
-    use aptos_token::token::TokenDataId;
+    use sui::url::{Self, Url};
+    use sui::signer::{Self, Signer};
+    use sui::coin::{Self, Coin};
+    use sui::balance::Balance;
+    use sui::sui::SUI;
+    use std::bcs;
+    use sui::object::{Self, ID, UID};
+    use sui::transfer;
+    use sui::tx_context::{Self,TxContext};
+
+    use nfts::auction_lib::{Self, Auction};
 
     struct ModuleData has key {
         token_data_id: TokenDataId,

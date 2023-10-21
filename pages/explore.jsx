@@ -149,7 +149,7 @@ const explore = () => {
                                         <BsArrowRight className='mt-1 ml-2' />
                                     </button>
                                 </div>
-                                {/* <div className="card-actions justify-end bg-[url('../public/images/hero.png')] "> */}
+                           {/* <div className="card-actions justify-end bg-[url('../public/images/hero.png')] "> */}
                                 {/* <button className="btn btn-primary">Buy Now</button> */}
                                 {/* </div> */}
                             </div>
