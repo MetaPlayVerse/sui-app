@@ -22,7 +22,7 @@ const StreamDashboard = () => {
     fetchData();
   }, []);
   return (
-    <div className="mt-8 flex flex-row justify-between gap-4 p-16">
+    <div className="mt-8 flex flex-row justify-between gap-4 p-16 min-h-screen text-white">
       <div className="mb-8 flex flex-col justify-start ml-16">
         <h1 className="text-2xl">{getStreamInfo.name}</h1>
         <h2>

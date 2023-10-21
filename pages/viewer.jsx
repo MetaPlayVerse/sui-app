@@ -1,36 +1,3 @@
-// import React, { useEffect } from "react";
-
-// const Viewer = () => {
-//   async function render() {
-//     try {
-//       const response = await fetch("/api/db");
-//       console.log("response found!");
-//       const data = await response.json();
-//       console.log(data);
-
-//       // const convertedData = convertData(data);
-//       if (response) {
-//         window.bracketsViewer.render({
-//           stages: data.stage,
-//           matches: data.match,
-//           matchGames: data.match_game,
-//           participants: data.participant,
-//         });
-//       }
-//     } catch (error) {
-//       alert(
-//         "Failed to fetch data from localhost. Please make sure the server is running."
-//       );
-//       console.error(error);
-//     }
-//   }
-//   useEffect(() => {
-//     render();
-//   }, []);
-//   return <div className="brackets-viewer"></div>;
-// };
-
-// export default Viewer;
 
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -128,7 +95,7 @@ const Viewer = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col text-gray-500">
       <div className="flex justify-center mt-10">
         <h1 className="text-4xl font-[700]">
           {tname ? tname : "Tournament Name"}
@@ -172,3 +139,37 @@ const Viewer = () => {
 };
 
 export default Viewer;
+
+// import React, { useEffect } from "react";
+
+// const Viewer = () => {
+//   async function render() {
+//     try {
+//       const response = await fetch("/api/db");
+//       console.log("response found!");
+//       const data = await response.json();
+//       console.log(data);
+
+//       // const convertedData = convertData(data);
+//       if (response) {
+//         window.bracketsViewer.render({
+//           stages: data.stage,
+//           matches: data.match,
+//           matchGames: data.match_game,
+//           participants: data.participant,
+//         });
+//       }
+//     } catch (error) {
+//       alert(
+//         "Failed to fetch data from localhost. Please make sure the server is running."
+//       );
+//       console.error(error);
+//     }
+//   }
+//   useEffect(() => {
+//     render();
+//   }, []);
+//   return <div className="brackets-viewer"></div>;
+// };
+
+// export default Viewer;

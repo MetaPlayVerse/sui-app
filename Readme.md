@@ -43,10 +43,9 @@ We are using SUI blockchain which is based on Move language for smart contract i
  We are trying to implement ZK login for the users to login to the platform using Google account. We are using @mysten/zklogin which is quite new and facing lots of issues with docs implementation. We have discussed the issue with SUI team at hackathon and they are too helpful and connected with their ZK developer on telegram - who have finally helped us to resolve the issue in the last moment.
 
  #### LivePeer Integration
-    We are trying to integrate LivePeer for live streaming of the games. We have integrated the LivePeer SDK with the frontend but facing issues with the LivePeer API. Took us some time and we have successfully solved the issue.
+  We are trying to integrate LivePeer for live streaming of the games. We have integrated the LivePeer SDK with the frontend but facing issues with the LivePeer API. Took us some time and we have successfully solved the issue.
 
  ## Demo <a name = "demo"></a>
-Sharing soon
 
 
 
