@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
-import {GetSaltRequest, GetSaltResponse} from "@/app/types/UsefulTypes";
+import {GetSaltRequest, GetSaltResponse} from "../../../../../types/UsefulTypes";
 import {generateRandomness} from "@mysten/zklogin";
 
 export async function POST(request: NextRequest) {

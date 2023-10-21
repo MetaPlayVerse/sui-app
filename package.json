@@ -13,6 +13,8 @@
 	"dependencies": {
 		"@livepeer/react": "^2.5.8",
 		"@mysten/bcs": "^0.8.1",
+		"@mysten/sui.js": "^0.44.0",
+		"@mysten/wallet-kit": "^0.8.0",
 		"@mysten/zklogin": "^0.3.2",
 		"@suiet/wallet-kit": "^0.2.20",
 		"@vercel/kv": "^0.2.3",
@@ -29,7 +31,8 @@
 		"react-dom": "18.2.0",
 		"react-dropzone": "^14.2.3",
 		"react-hot-toast": "^2.4.1",
-		"react-ipfs-image": "^0.7.1"
+		"react-ipfs-image": "^0.7.1",
+		"react-loader-spinner": "^5.4.5"
 	},
 	"devDependencies": {
 		"@lottiefiles/lottie-player": "^2.0.2",
