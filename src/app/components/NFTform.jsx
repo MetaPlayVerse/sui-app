@@ -1,11 +1,23 @@
 "use client"
 
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, createFactory, useCallback } from 'react'
+import { ethos, TransactionBlock } from 'ethos-connect'
+import { PLAYVERSE_NFT_CONTRACT } from '../../client/config'
 import { BsArrowRight } from 'react-icons/bs'
 import { useRouter } from 'next/navigation';
+import {
+    ConnectButton,
+    useAccountBalance,
+    useWallet,
+    SuiChainId,
+    ErrorCode,
+    formatSUI
+} from "@suiet/wallet-kit";
 
 const NFTform = () => {
     const router = useRouter();
+    const wallet = useWallet();
+    const [nftObjectId, setNftObjectId] = useState('');
     const [nftName, setNftName] = useState('');
     const [nftDescription, setNftDescription] = useState('');
     const [nftImage, setNftImage] = useState('');
@@ -13,12 +25,49 @@ const NFTform = () => {
     const [nftAmount, setNftAmount] = useState('');
 
     const onFormSubmit = async (event) => {
-        window.my_modal_3.showModal();
         event.preventDefault();
+
+        console.log(nftName, nftDescription, nftImage, nftPrice);
+        console.log("wallet", wallet);
+        console.log("wallet", wallet?.account?.address)
+        if (!wallet?.account?.address) return;
+
+        try {
+            const transactionBlock = new TransactionBlock();
+            transactionBlock.moveCall({
+                target: `${PLAYVERSE_NFT_CONTRACT}::nft::mint_to_sender`,
+                arguments: [
+                    transactionBlock.pure(nftName),
+                    transactionBlock.pure(nftDescription),
+                    transactionBlock.pure(nftImage),
+                    transactionBlock.pure(nftPrice)
+                ]
+            })
+
+            const response = await wallet.signAndExecuteTransactionBlock({
+                transactionBlock,
+                options: {
+                    showObjectChanges: true,
+                }
+            });
+
+            if (response?.objectChanges) {
+                const createdObject = response.objectChanges.find(
+                    (e) => e.type === "created"
+                );
+                if (createdObject && "objectId" in createdObject) {
+                    setNftObjectId(createdObject.objectId)
+                }
+            }
+            window.my_modal_3.showModal();
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     const nameHandler = (event) => {
-        setNftName(event.target.defaultdefaultValue);
+        setNftName(event.target.defaultValue);
     }
 
     const descriptionHandler = (event) => {
@@ -52,8 +101,8 @@ const NFTform = () => {
                         </div>
 
                         <div className=" flex flex-col text-left mb-6">
-                            <label htmlFor="text" className=" mb-2 text-lg font-medium text-white dark:text-white">Upload NFT Image</label>
-                            <input type="file" id="input-name" onChange={imageHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+                            <label htmlFor="text" className=" mb-2 text-lg font-medium text-white dark:text-white">Paste Image URL for NFT</label>
+                            <input type="text" id="input-name" defaultValue="https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/advisor/in/wp-content/uploads/2022/03/monkey-g412399084_1280.jpg" onChange={imageHandler} className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
                         </div>
 
                         <div className=" flex flex-col text-left mb-6">
