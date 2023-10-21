@@ -1,6 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import {kv} from "@vercel/kv";
-import {LoginResponse, ZKPRequest} from "@/app/types/UsefulTypes";
+import {LoginResponse, ZKPRequest} from "../../../../types/UsefulTypes";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
