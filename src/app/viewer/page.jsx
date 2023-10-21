@@ -18,7 +18,7 @@ const Viewer = () => {
     useEffect(() => {
         const storedGameId = localStorage.getItem("gameId");
         console.log(storedGameId);
-        if (storedGameId != 0) {
+        if (storedGameId !== null && storedGameId !== "0") {
             setGameId(parseInt(storedGameId));
         }
     }, []);

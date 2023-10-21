@@ -74,7 +74,7 @@ const explore = () => {
                                         <BiHeart />
                                     </div>
                                 </div>
-                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Tutorial: How to play Umi's friends and setup account
+                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Tutorial: How to play Umi&rsquo;s friends and setup account
                                 </h2>
                                 <div className="flex ">
                                     <button
@@ -160,7 +160,7 @@ const explore = () => {
                                         <BiHeart />
                                     </div>
                                 </div>
-                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Tutorial: How to play Umi's friends and setup account
+                                <h2 className="card-title font-Montserrat text-[24px] pb-4">Tutorial: How to play Umi&rsquo;s friends and setup account
                                 </h2>
                                 <div className="flex ">
                                     <button
