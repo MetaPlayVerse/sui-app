@@ -1,20 +1,20 @@
 "use client";
 
-import {useEffect, useLayoutEffect, useState} from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-import {GetSaltRequest, LoginResponse, UserKeyData, ZKPPayload, ZKPRequest} from "@/app/types/UsefulTypes";
+import { GetSaltRequest, LoginResponse, UserKeyData, ZKPPayload, ZKPRequest } from "@/app/types/UsefulTypes";
 
-import {genAddressSeed, getZkLoginSignature, jwtToAddress} from '@mysten/zklogin';
+import { genAddressSeed, getZkLoginSignature, jwtToAddress } from '@mysten/zklogin';
 import axios from "axios";
-import {toBigIntBE} from "bigint-buffer";
-import {fromB64} from "@mysten/bcs";
-import {useSui} from "@/app/hooks/useSui";
-import {SerializedSignature} from "@mysten/sui.js/cryptography";
-import {Ed25519Keypair} from "@mysten/sui.js/keypairs/ed25519";
-import {TransactionBlock} from '@mysten/sui.js/transactions';
-import {Blocks} from 'react-loader-spinner'
-import {toast} from "react-hot-toast";
-import { ZkLoginSignatureInputs} from "@mysten/sui.js/dist/cjs/zklogin/bcs";
+import { toBigIntBE } from "bigint-buffer";
+import { fromB64 } from "@mysten/bcs";
+import { useSui } from "@/app/hooks/useSui";
+import { SerializedSignature } from "@mysten/sui.js/cryptography";
+import { Ed25519Keypair } from "@mysten/sui.js/keypairs/ed25519";
+import { TransactionBlock } from '@mysten/sui.js/transactions';
+import { Blocks } from 'react-loader-spinner'
+import { toast } from "react-hot-toast";
+import { ZkLoginSignatureInputs } from "@mysten/sui.js/dist/cjs/zklogin/bcs";
 
 export default function Page() {
 
@@ -29,7 +29,7 @@ export default function Page() {
     const [userBalance, setUserBalance] = useState<number>(0);
     const [transactionInProgress, setTransactionInProgress] = useState<boolean>(false);
 
-    const {suiClient} = useSui();
+    const { suiClient } = useSui();
 
     const MINIMUM_BALANCE = 0.003;
 
@@ -42,7 +42,7 @@ export default function Page() {
         console.log("Subject = ", subject);
         console.log("jwt = ", jwtEncoded);
         const response = await axios.post('/api/userinfo/get/salt', getSaltRequest);
-        console.log("getSalt response = ", response);  
+        console.log("getSalt response = ", response);
         if (response?.data.status == 200) {
             const userSalt = response.data.salt;
             console.log("Salt fetched! Salt = ", userSalt);
@@ -69,7 +69,7 @@ export default function Page() {
         setError(null);
         setTransactionInProgress(true);
         const decodedJwt: LoginResponse = jwt_decode(jwtEncoded!) as LoginResponse;
-        const {userKeyData, ephemeralKeyPair} = getEphemeralKeyPair();
+        const { userKeyData, ephemeralKeyPair } = getEphemeralKeyPair();
         const partialZkSignature = zkProof!;
 
         if (!partialZkSignature || !ephemeralKeyPair || !userKeyData) {
@@ -89,7 +89,7 @@ export default function Page() {
         });
         txb.setSender(userAddress!);
 
-        const signatureWithBytes = await txb.sign({client: suiClient, signer: ephemeralKeyPair});
+        const signatureWithBytes = await txb.sign({ client: suiClient, signer: ephemeralKeyPair });
 
         console.log("Got SignatureWithBytes = ", signatureWithBytes);
         console.log("maxEpoch = ", userKeyData.maxEpoch);
@@ -123,7 +123,7 @@ export default function Page() {
             }
         }).catch((error) => {
             console.log("Error During Tx Execution. Details: ", error);
-            if(error.toString().includes("Signature is not valid")){
+            if (error.toString().includes("Signature is not valid")) {
                 createRuntimeError("Signature is not valid. Please generate a new one by clicking on 'Get new ZK Proof'");
             }
             setTransactionInProgress(false);
@@ -134,23 +134,23 @@ export default function Page() {
         setError(null);
         setTransactionInProgress(true);
         const decodedJwt: LoginResponse = jwt_decode(jwtEncoded!) as LoginResponse;
-        const {userKeyData, ephemeralKeyPair} = getEphemeralKeyPair();
+        const { userKeyData, ephemeralKeyPair } = getEphemeralKeyPair();
 
         printUsefulInfo(decodedJwt, userKeyData);
 
         const ephemeralPublicKeyArray: Uint8Array = fromB64(userKeyData.ephemeralPublicKey);
 
         const zkpPayload: ZKPPayload =
-            {
-                jwt: jwtEncoded!,
-                extendedEphemeralPublicKey: toBigIntBE(
-                    Buffer.from(ephemeralPublicKeyArray),
-                ).toString(),
-                jwtRandomness: userKeyData.randomness,
-                maxEpoch: userKeyData.maxEpoch,
-                salt: userSalt!,
-                keyClaimName: "sub"
-            };
+        {
+            jwt: jwtEncoded!,
+            extendedEphemeralPublicKey: toBigIntBE(
+                Buffer.from(ephemeralPublicKeyArray),
+            ).toString(),
+            jwtRandomness: userKeyData.randomness,
+            maxEpoch: userKeyData.maxEpoch,
+            salt: userSalt!,
+            keyClaimName: "sub"
+        };
         const ZKPRequest: ZKPRequest = {
             zkpPayload,
             forceUpdate
@@ -178,7 +178,7 @@ export default function Page() {
         const userKeyData: UserKeyData = JSON.parse(localStorage.getItem("userKeyData")!);
         let ephemeralKeyPairArray = Uint8Array.from(Array.from(fromB64(userKeyData.ephemeralPrivateKey!)));
         const ephemeralKeyPair = Ed25519Keypair.fromSecretKey(ephemeralKeyPairArray);
-        return {userKeyData, ephemeralKeyPair};
+        return { userKeyData, ephemeralKeyPair };
     }
 
     async function checkIfAddressHasBalance(address: string): Promise<boolean> {
@@ -260,16 +260,16 @@ export default function Page() {
         setUserAddress(address);
         setUserSalt(userSalt!);
         const hasEnoughBalance = await checkIfAddressHasBalance(address);
-        if(!hasEnoughBalance){
+        if (!hasEnoughBalance) {
             await giveSomeTestCoins(address);
-            toast.success("We' ve fetched some coins for you, so you can get started with Sui !", {   duration: 8000,} );
+            toast.success("We' ve fetched some coins for you, so you can get started with Sui !", { duration: 8000, });
         }
 
         console.log("All required data loaded. ZK Address =", address);
     }
 
     useLayoutEffect(() => {
-        
+
         setError(null);
         const hash = new URLSearchParams(window.location.hash.slice(1));
         const jwt_token_encoded = hash.get("id_token");
@@ -307,10 +307,10 @@ export default function Page() {
 
 
     return (
-        <div id="cb" className="space-y-12">
+        <div id="cb" className="space-y-12 bg-black text-white p-[100px] px-[200px] ">
             <div className="px-4 sm:px-0">
-                <h3 className="text-base font-semibold leading-7 text-gray-900">Authenticated Area</h3>
-                <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Login with External Provider Completed</p>
+                <h3 className="text-base font-semibold leading-7 ">Authenticated Area</h3>
+                <p className="mt-1 max-w-2xl text-lg font-bold leading-6 ">Account Created Successfully</p>
             </div>
 
 
@@ -318,8 +318,8 @@ export default function Page() {
                 <dl className="divide-y divide-gray-100">
                     {userAddress ? (
                         <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt className="text-sm font-medium leading-6 text-gray-900">User Address</dt>
-                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            <dt className="text-sm font-medium leading-6 ">User Address</dt>
+                            <dd className="mt-1 text-sm leading-6 text-gray-100 sm:col-span-2 sm:mt-0">
                                 <span className="mr-5">{userAddress!}</span>
                                 <span className="ml-0"><button
                                     type="button"
@@ -328,26 +328,26 @@ export default function Page() {
                                         navigator.clipboard.writeText(userAddress!)
                                     }}
                                 >
-                                Copy
-                            </button></span>
+                                    Copy
+                                </button></span>
                             </dd>
                         </div>
                     ) : null}
                     {userAddress ? (
                         <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt className="text-sm font-medium leading-6 text-gray-900">Balance</dt>
-                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            <dt className="text-sm font-medium leading-6 text-gray-100">Balance</dt>
+                            <dd className="mt-1 text-sm leading-6 text-gray-100 sm:col-span-2 sm:mt-0">
                                 <span className="mr-5">{userBalance.toFixed(4)} SUI</span>
                                 <span className="ml-5">
-                                <button
-                                    type="button"
-                                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                                    disabled={!userAddress}
-                                    onClick={() => giveSomeTestCoins(userAddress!)}
-                                >
+                                    <button
+                                        type="button"
+                                        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                        disabled={!userAddress}
+                                        onClick={() => giveSomeTestCoins(userAddress!)}
+                                    >
                                         Get Testnet Coins
                                     </button>
-                            </span>
+                                </span>
                             </dd>
                         </div>
                     ) : null}
@@ -355,14 +355,14 @@ export default function Page() {
                         <div>
 
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">User Salt</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-100">User Salt</dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-300 sm:col-span-2 sm:mt-0">
                                     <span className="mr-5">{userSalt}</span>
                                 </dd>
                             </div>
                             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium leading-6 text-gray-900">Subject ID</dt>
-                                <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                                <dt className="text-sm font-medium leading-6 text-gray-100">Subject ID</dt>
+                                <dd className="mt-1 text-sm leading-6 text-gray-300 sm:col-span-2 sm:mt-0">
                                     <span className="mr-5">{subjectID}</span>
                                 </dd>
                             </div>
@@ -374,18 +374,18 @@ export default function Page() {
 
                     {zkProof ? (
                         <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt className="text-sm font-medium leading-6 text-gray-900">ZK Proof (point A)</dt>
-                            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                            <dt className="text-sm font-medium leading-6 text-gray-100">ZK Proof (point A)</dt>
+                            <dd className="mt-1 text-sm leading-6 text-gray-100 sm:col-span-2 sm:mt-0">
                                 <span className="mr-5">{zkProof?.proofPoints?.a.toString().slice(0, 30)}...</span>
                                 <span className="ml-5">
-                                <button
-                                    type="button"
-                                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                                    onClick={() => getZkProof(true)}
-                                >
+                                    <button
+                                        type="button"
+                                        className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                        onClick={() => getZkProof(true)}
+                                    >
                                         Get new ZK Proof
                                     </button>
-                            </span>
+                                </span>
                             </dd>
                         </div>
                     ) : null
@@ -411,22 +411,22 @@ export default function Page() {
 
 
             {txDigest ? (
-                    <div className="flex flex-col items-center mt-5">
-                        <h3>Transaction Completed!</h3>
-                        <div id="contents" className="font-medium pb-6 pt-6">
-                            <p>TxDigest = {txDigest}</p>
-                        </div>
-                        <div id="contents" className="font-medium pb-6">
-                            <button
-                                className="bg-gray-400 text-white px-4 py-2 rounded-md"
-                                disabled={!userAddress}
-                                onClick={() => window.open(`https://testnet.suivision.xyz/txblock/${txDigest}`, "_blank")}
-                            >
-                                See it on Explorer
-                            </button>
-                        </div>
+                <div className="flex flex-col items-center mt-5">
+                    <h3>Transaction Completed!</h3>
+                    <div id="contents" className="font-medium pb-6 pt-6">
+                        <p>TxDigest = {txDigest}</p>
                     </div>
-                ) :
+                    <div id="contents" className="font-medium pb-6">
+                        <button
+                            className="bg-gray-400 text-white px-4 py-2 rounded-md"
+                            disabled={!userAddress}
+                            onClick={() => window.open(`https://testnet.suivision.xyz/txblock/${txDigest}`, "_blank")}
+                        >
+                            See it on Explorer
+                        </button>
+                    </div>
+                </div>
+            ) :
                 null
             }
 

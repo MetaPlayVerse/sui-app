@@ -35,7 +35,7 @@ const Hero = () => {
                         </div>
 
                         <div className={style.title}>
-                            Stream & Organize Games on the Scroll Blockchain
+                            Stream & Organize Games on the SUI Blockchain
                         </div>
 
                         <div className={style.ctaContainer}>
