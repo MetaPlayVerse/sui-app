@@ -48,6 +48,9 @@ We are using SUI blockchain which is based on Move language for smart contract i
  ## Demo <a name = "demo"></a>
 
 
+https://suiplayverse.vercel.app/
+
+https://sui.metaplayverse.xyz/
 
 
 
